@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You 💌</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<script src="script.js"></script>
+
+<audio id="music">
+  <source src="intbgmusic2.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.addEventListener("load", () => {
+  document.getElementById("music").play().catch(() => {
+    console.log("Autoplay blocked");
+  });
+});
+</script>
+
+
+  <div class="container">
+
+    <h1 class="title">Hey you.…. 💖</h1>
+
+    <div class="letter-box">
+      <p id="typewriter"></p>
+    </div>
+
+    <button id="finalBtn" onclick="showFinalMessage()">
+      One Last Thing... ❤️
+    </button>
+
+    <div id="finalMessage">
+      <h2>Happy Birthday ❤️</h2>
+      <p>
+        No matter how far apart we are today,
+        I hope you never forget how special you are to me.
+        (Nezáleží na tom, jak daleko jsme dnes od sebe,
+        doufám, že nikdy nezapomeneš, jak jsi pro mě výjimečná.)
+      </p>
+
+      <p>
+        Thank you for your kindness, your patience,
+        your smile, your voice, and every moment you've shared with me.
+        (Děkuji ti za tvou laskavost, tvou trpělivost, tvůj úsměv, 
+        tvůj hlas a každý okamžik, který jsi se mnou sdílela.)
+      </p>
+
+      <p>
+        I may not be there beside you today,
+        but a part of me is celebrating with you anyway.
+        (Možná tu dnes s tebou nebudu, 
+        ale část mě to s tebou stejně slaví.)
+      </p>
+
+      <p>
+        Here's to more memories, more laughs,
+        and hopefully fewer miles between us someday.
+        (Na více vzpomínek, více smíchu a doufejme, 
+        že jednou mezi námi bude méně kilometrů.)
+      </p>
+
+      <p class="signature">
+        — Your AJAY ❤️
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    const text = `I don't know how to put everything I feel into perfect words,
+    (Nevím, jak vyjádřit všechno, co cítím, dokonalými slovy,)
+
+but I know one thing for sure...
+(ale jednu věc vím jistě...)
+
+I truly appreciate the kind and amazing woman you are.
+(Opravdu si vážím toho, jak laskavá a úžasná žena jsi.)
+
+Distance between us can be painful,
+but it doesn't change what you mean to me.
+(Vzdálenost mezi námi může být bolestivá, 
+ale nemění to, co pro mě znamenáš.)
+
+You are my comfort.
+(You are my comfort.)
+
+My calm.
+(Můj klid.)
+
+And somehow my favorite thought during random moments of the day.
+(A tak nějak moje nejoblíbenější myšlenka v náhodných okamžicích dne.)
+
+I miss you in ways I can't properly explain.
+(Chybíš mi způsoby, které nedokážu pořádně popsat.)
+
+Not just the big moments.
+(Nejen ty velké okamžiky.)
+
+Even the small things.
+(I ty malé věci.)
+
+The conversations.
+The games.
+The time we spend together.
+
+I still smile when I remember that night we stayed up way too late playing together and completely forgot what time it was.
+(Pořád se usmívám, když si vzpomenu na tu noc, kdy jsme spolu zůstali vzhůru příliš dlouho, hráli si a úplně zapomněli, kolik je hodin.)
+
+I genuinely appreciate every bit of it.
+(Opravdu si vážím každého kousku.)
+
+One day,
+I hope I get to know you even better.
+(Jednoho dne, 
+doufám, že tě poznám ještě lépe.)
+
+I hope we create memories beyond screens,
+beyond calls,
+and beyond distance.
+
+Let's stop hurting each other.
+(Přestaňme si navzájem ubližovat.)
+
+Let's choose understanding.
+(Zvolme si porozumění.)
+
+Let's choose patience.
+(Zvolme trpělivost.)
+
+Let's choose happiness.
+(Vyberme si štěstí.)
+
+And let's keep moving forward together.
+
+Happy Birthday, Luci... ❤️`;
+
+    const target = document.getElementById("typewriter");
+    const finalBtn = document.getElementById("finalBtn");
+
+    let index = 0;
+
+    function typeWriter() {
+      if (index < text.length) {
+
+        target.innerHTML =
+          text.substring(0, index + 1) +
+          '<span class="cursor">|</span>';
+
+        index++;
+
+        setTimeout(typeWriter, 30);
+
+      } else {
+
+        target.innerHTML = text;
+
+        setTimeout(() => {
+          finalBtn.classList.add("show");
+        }, 1000);
+      }
+    }
+
+    function showFinalMessage() {
+      document.getElementById("finalMessage").classList.add("show");
+      finalBtn.style.display = "none";
+    }
+
+    window.onload = typeWriter;
+  </script>
+
+</body>
+</html>

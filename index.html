@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hmm...</title>
+
+  <!-- This script pulls in Tailwind CSS for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- These are for the animations and photo gallery -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css" />
+
+  <!-- Google Fonts for the Anime look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Link to your new external CSS file -->
+  <link rel="stylesheet" href="style.css">
+  <!-- IMPORTANT: Replace with a real image link after you upload it -->
+  <meta property="og:title" content="Something Special">
+
+
+</head>
+
+
+
+<body>
+<!-- Canvas for the falling cherry blossoms -->
+<canvas id="sakura-canvas"></canvas>
+
+<div id="introScreen">
+  <div class="introCard" onclick="enterSite()">
+
+    <h1 id="typeText"></h1>
+
+    <p class="subText">Someone made something just for you ❤️</p>
+
+    <p class="tap">Tap HERE to continue 🌸</p>
+
+  </div>
+
+  <!-- floating petals -->
+  <div class="petals">
+    <span>💗</span><span>💖</span><span>💝</span><span>🩷</span><span>❤️</span>
+  </div>
+
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="intbgmusic.mp3" type="audio/mp3">
+</audio>
+
+
+
+
+<!-- Music
+<button id="musicBtn"
+  style="
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background: rgba(255, 77, 110, 0);
+    color: white;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 9999;
+  ">
+  💝
+</button>
+
+-->
+
+
+
+
+<!-- Section 1: Hero Welcome -->
+<header class="h-screen relative flex items-center justify-center text-white overflow-hidden">
+  <img src="img/rosess.jpg"
+       alt="Background"
+       class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
+  
+
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+  <div class="text-center z-10 p-4" data-aos="fade-in" data-aos-duration="1500">
+    <h1 class="text-5xl md:text-7xl font-anime drop-shadow-lg romantic-title"  >Happy Birthday, Dear Lucie !</h1>
+    <p class="mt-10 text-lg font-semibold">Celebrating a wonderful journey of love, laughter, and memories that I'll cherish forever.❤️</p>
+    <div id="countdown" class="mt-6 text-2xl font-semibold tracking-widest leading-relaxed"></div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="container mx-auto p-6 md:p-12">
+
+  <!-- Section 2: A Letter For You -->
+  <section class="my-16 md:my-24 max-w-3xl mx-auto text-center" data-aos="fade-up">
+    <h2 class="text-2xl md:text-3xl font-anime text-sakura mb-8 drop-shadow-sm">A Special Message For You...💖</h2>
+    <div class="text-left text-lg leading-relaxed space-y-4 p-8 rounded-2xl shadow-2xl text-white border border-pink-300/30"
+     style="
+        background: linear-gradient(135deg, #6a1b4d, #8b3a62);
+        box-shadow: 0 0 30px rgba(255,182,193,0.25);
+     ">
+      <!-- TODO: Write your personal letter here -->
+      <p>Hey Luci,</p>
+      <p>It's still crazy to both of us that just a random game Fortnite brought us into our lives. 
+        What started as a few matches and conversations became one of the most important connections I've ever had. 
+        Even though we've never met in person yet, we share a unique bond you've given me so many reasons to smile, laugh, and look forward to every day.</p>
+      <p>Distance may keep us apart for now, but it has never stopped me from caring about you. 
+        Thank you for being you.... for your love, your kindness, your patience, your beautiful heart and soul, and for all the memories we've made together so far.</p>
+      <p>On your special day, I just want you to know how much you mean to me. I hope this year brings you happiness, success, and everything you've been wishing for. 
+        And hopefully, one day soon, we'll look back at all of this together and laugh about how our story started in Fortnite and it became so amazing that neither of us
+      could have thought of.</p>
+      <p class="text-right mt-8">
+        Regards<br>
+      </p>
+    </div>
+  </section>
+
+<!-- Section 2: A Letter For You in Cesky -->
+  <section class="my-16 md:my-24 max-w-3xl mx-auto text-center" data-aos="fade-up">
+    <h2 class="text-2xl md:text-3xl font-anime text-sakura mb-8 drop-shadow-sm">Zvláštní zpráva pro vás...💖</h2>
+    <div class="text-left text-lg leading-relaxed space-y-4 p-8 rounded-2xl shadow-2xl text-white border border-pink-300/30"
+     style="
+        background: linear-gradient(135deg, #6a1b4d, #8b3a62);
+        box-shadow: 0 0 30px rgba(255,182,193,0.25);
+     ">
+      <!-- TODO: Write your personal letter here -->
+      <p>Ahoj Luci,</p>
+      <p>Pořád je pro nás oba šílené, že nás do života přivedla jen náhodná hra Fortnite. 
+        To, co začalo jako pár zápasů a rozhovorů, se stalo jedním z nejdůležitějších kontaktů, jaké jsem kdy měl. 
+        I když jsme se ještě nikdy osobně nepotkali, sdílíme jedinečné pouto. Díky tobě jsem měla tolik důvodů k úsměvu, smíchu a těšení se na každý den.</p>
+      <p>Vzdálenost nás možná prozatím drží od sebe, ale nikdy mi to nezabránilo v tom, abych se o tebe staral. 
+        Děkuji ti, že jsi sama sebou... za tvou lásku, laskavost, trpělivost, krásné srdce a duši a za všechny vzpomínky, které jsme spolu dosud vytvořili.</p>
+      <p>V tvůj zvláštní den chci, abys věděl/a, jak moc pro mě znamenáš. Doufám, že ti tento rok přinese štěstí, úspěch a vše, po čem sis toužil/a. 
+        A doufejme, že se na to všechno brzy společně ohlédneme a zasmějeme se tomu, jak náš příběh začal ve Fortnite a stal se tak úžasným, 
+        že si to ani jeden z nás nedokázal představit.</p>
+      <p class="text-right mt-8">
+        Pozdravy<br>
+      </p>
+    </div>
+  </section>
+
+
+
+  <!-- Section 3: New Message -->
+  <section class="my-16 md:my-24 max-w-3xl mx-auto text-center" data-aos="fade-up">
+    <h2 class="text-2xl md:text-3xl font-anime text-sakura mb-8 drop-shadow-sm">Lucie.. New Message for you💖</h2>
+    <br>
+    <p class="text-center text-lg -mt-8 mb-12 my-text" >NEW, Added Today, 29 June 2026</p>
+    <div class="text-left text-lg leading-relaxed space-y-4 p-8 rounded-2xl shadow-2xl text-white border border-pink-300/30"
+     style="
+        background: linear-gradient(135deg, #6a1b4d, #8b3a62);
+        box-shadow: 0 0 30px rgba(255,182,193,0.25);
+     ">
+      <!-- TODO: Write your personal letter here -->
+      <p>Hey Lucie,</p>
+      <p>As I have said this many times, that I have so muhc strong feelings towards you. And I don't want to live without you, I want you to be at my side... Always...</p>
+      <p>Sometimes I feel sad and try to act strong and cold but you already know me very well how I am and who I am.
+        And I just want to tell you again that I really appreciate YOU, the nice and kind hearted women you are. I just love the way you are.</p>
+      <p>And I made changes on this website and I will keep making and improving it... keep reminding you how can I show my care and affection for you. Thank you for choosing me, Thank you for loving me and caring for me.</p>
+      <p class="text-right mt-8">
+        💗💖🩷❤️💝✨⭐<br>
+      </p>
+    </div>
+  </section>
+
+
+
+<div class="text-center mt-8">
+    <button
+        onclick="showSurprise()"
+        class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition">
+        🎁 Don't Click Me
+    </button>
+</div>
+
+<!-- Popup -->
+<div id="surprisePopup"
+     class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+    <div class="bg-white rounded-xl p-6 max-w-sm mx-4 text-center shadow-2xl">
+        <h2 class="text-2xl font-bold text-pink-500 mb-4">
+            Surprise! 😂
+        </h2>
+
+        <p id="surpriseText" class="text-lg text-black mb-6"></p>
+
+        <button
+            onclick="closeSurprise()"
+            class="bg-pink-500 text-white px-5 py-2 rounded-lg hover:bg-pink-600">
+            Go back and keep clicking it!
+        </button>
+    </div>
+
+</div>
+
+
+
+
+  <!-- Section 3: The Timeline -->
+  <section class="my-16 md:my-24">
+    <h2 class="text-4xl md:text-5xl font-anime text-center mb-12 my-text" data-aos="fade-up">Your Story Arc</h2>
+    <div class="space-y-16">
+      <!-- Timeline Item 1 -->
+      <div class="flex flex-col md:flex-row items-center gap-8" data-aos="fade-right">
+        <!-- TODO: Replace with your photo -->
+        <!-- <img src="img/jammu.png" alt="Add photo 1" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white"> -->
+        <div class="text-center md:text-left">
+          <!-- TODO: Customize the date and story -->
+          <h2 class="text-2xl font-anime text-sakura">Our first Meeting</h2>
+          <p class="mt-2 text-lg my-text">1st week of October 2025</p>
+          <p class="mt-2 text-lg my-text">I send friend request to a YOU, "LucieM85" , in Fortnite. We started enjoying our company and games a lot.</p>
+            <br>
+        </div>
+      </div>
+      <!-- Timeline Item 2 -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-8" data-aos="fade-left">
+        <!-- TODO: Replace with your photo -->
+        <!--<img src="img/food.png" alt="Add photo 2" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white">-->
+        <div class="text-center md:text-right">
+          <!-- TODO: Customize the date and story -->
+          <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">Our Face Reveals</h3>
+          <p class="mt-2 text-lg my-text">4 Feburary 2026</p>
+          <p class="mt-2 text-lg my-text">We mutually agreed for our face reveal.</p>
+         <br>
+        </div>
+      </div>
+      <!-- Timeline Item 3 (NEW) -->
+      <div class="flex flex-col md:flex-row items-center gap-8" data-aos="fade-right">
+        <!--<img src="img/mumbai.png" alt="Add photo 3" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white">-->
+        <div class="text-center md:text-left">
+          <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">Your Confession</h3>
+          <p class="mt-2 text-lg my-text">16 Feburary 2026</p>
+          <p class="mt-2 text-lg my-text">You confessed your feelings that you like me beyond just a friend. It drove me crazy and I resisted it a lot.</p>
+         <br>
+        </div>
+      </div>
+      <!-- Timeline Item 4 (NEW) -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-8" data-aos="fade-left">
+        <!-- <img src="img/imagica.png" alt="Add photo4" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white"> -->
+        <div class="text-center md:text-right">
+          <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">Our first VC</h3>
+          <p class="mt-2 text-lg my-text">26 March 2026</p>
+          <p class="mt-2 text-lg my-text">We mutually agreed for Video Call, and for the first time we talked face to face.</p>
+            <br>
+        </div>
+      </div>
+      <!-- Timeline Item 5 (NEW) -->
+      <div class="flex flex-col md:flex-row items-center gap-8" data-aos="fade-right">
+        <!-- <img src="img/mumbai.png" alt="Add photo 3" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white"> -->
+        <div class="text-center md:text-left">
+          <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">My Confession</h3>
+          <p class="mt-2 text-lg my-text">April 2026</p>
+          <p class="mt-2 text-lg my-text">I finally admitted that I have some feelings, that developed only through spending a lot of time with you and through your kindness
+            and affection towards me.
+          </p>
+         <br>
+        </div>
+      </div>
+      <!-- Timeline Item 6 (NEW) -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-8" data-aos="fade-left">
+        <!-- <img src="img/imagica.png" alt="Add photo4" class="w-full md:w-1/2 rounded-lg shadow-xl border-4 border-white"> -->
+        <div class="text-center md:text-right">
+          <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">Our Journey Continues still.... </h3>
+          <p class="mt-2 text-lg my-text"></p>
+          <p class="mt-2 text-lg my-text">We both should focus on enjoying our time together rather than worrying what might happen in future,
+            we will proceed as life and love will take both of us....
+          </p>
+            <br>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Your Favourite Photos of your loved Ones (NEW SECTION) -->
+  <section class="my-16 md:my-24">
+    <h2 class="text-4xl md:text-5xl font-anime text-center mb-12  my-text" data-aos="fade-up">Hall of Fame</h2>
+    <p class="text-center text-lg -mt-8 mb-12 my-text" >Swipe left or right for more cards.</p>
+    <div class="relative">
+      <!-- Scroll Buttons -->
+      <button id="scroll-left-btn" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-opacity opacity-0 md:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sakura" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button id="scroll-right-btn" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-opacity opacity-0 md:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sakura" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
+
+      <!-- Scrollable Container -->
+      <div id="hall-of-fame-scroller" class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide p-4 -mx-4">
+        <div class="flex snap-x snap-mandatory gap-4 sm:gap-8">
+          <!--  Card 1 -->
+          <div class="snap-center flex-shrink-0 w-72 sm:w-80 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/1fms.png" alt="Photo 1" class="w-full aspect-[3/4] object-cover rounded-md mb-4">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">Male Ferrari Skin</h3>
+              <p class="mt-2 text-sm sm:text-base text-black">"You told me to buy...”"</p>
+            </div>
+          </div>
+          <!--  Card 2 -->
+          <div class="snap-center flex-shrink-0 w-72 sm:w-80 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/2ynm2.png" alt="Photo 2" class="w-full aspect-[3/4] object-cover rounded-md mb-4">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">Everything Matching</h3>
+              <p class="mt-2 text-sm sm:text-base text-black">"Matching skin, matching names..."</p>
+            </div>
+          </div>
+          <!--  Card 3 -->
+          <div class="snap-center flex-shrink-0 w-72 sm:w-80 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/3yumyum.png" alt="Photo 3" class="w-full aspect-[3/4] object-cover rounded-md mb-4">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">Yum Yum !</h3>
+              <p class="mt-2 text-sm sm:text-base text-black">"You are my YUM YUM..."</p>
+            </div>
+          </div>
+          <!--  Card 4 -->
+          <div class="snap-center flex-shrink-0 w-72 sm:w-80 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="400">
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/palia1.png" alt="Photo 4" class="w-full aspect-[3/4] object-cover rounded-md mb-4">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">US in Palia</h3>
+                <p class="mt-2 text-sm sm:text-base text-black">"Sitting and chilling...."</p>
+            </div>
+          </div>
+          <!--  Card 5 --> 
+          <div class="snap-center flex-shrink-0 w-72 sm:w-80 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="500">
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/usincar.png" alt="Photo 5" class="w-full aspect-[3/4] object-cover rounded-md mb-4">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">Our Car</h3>
+              <p class="mt-2 text-sm sm:text-base text-black">"You and Me in Car"</p>
+            </div>
+          </div>
+          <!--  Card 6 --> 
+          <div class="snap-center flex-shrink-0 w-72 sm:w-80 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="500">
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/urcute.png" alt="Photo 5" class="w-full aspect-[3/4] object-cover rounded-md mb-4">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">Cutie</h3>
+              <p class="mt-2 text-sm sm:text-base text-black">"Your skin is very cute"</p>
+            </div>
+          </div>
+          <!--  Card 7 --> 
+          <div class="snap-center flex-shrink-0 w-72 sm:w-80 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="500">
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/beatingheart.png" alt="Photo 5" class="w-full aspect-[3/4] object-cover rounded-md mb-4">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">Your heart is mine</h3>
+              <p class="mt-2 text-sm sm:text-base text-black">"You have nice heart..."</p>
+            </div>
+          </div>
+          <!--  Card 8 --> 
+          <div class="snap-center flex-shrink-0 w-72 sm:w-80 md:w-1/3 lg:w-1/4" data-aos="fade-up" data-aos-delay="500">
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center h-full">
+              <img src="img/youandme.jpeg" alt="Photo 5" class="w-full aspect-[3/4] object-cover rounded-md mb-4">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-anime text-sakura">You and Me</h3>
+              <p class="mt-2 text-sm sm:text-base text-black">"This is best picture here..."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Section 5: The Gallery -->
+  <section class="my-16 md:my-24">
+    <h2 class="text-4xl md:text-5xl font-anime text-center mb-12 my-text" data-aos="fade-up" >Game Moments</h2>
+    <h3 class="text-center text-lg -mt-8 mb-12 my-text" >Funny game moments.</h3>
+    <p class="text-center text-lg -mt-8 mb-12 my-text" >Click on picture to expand.</p>
+    <div id="lightgallery" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="img/1fms.png" data-aos="zoom-in" class="block w-full h-48 md:h-64">
+        <img src="img/1fms.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Ferrari skin you told me to buy.">
+      </a>
+      <a href="img/2ynm.png" data-aos="zoom-in" data-aos-delay="100" class="block w-full h-48 md:h-64">
+        <img src="img/2ynm.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Matching Skins">
+      </a>
+      <a href="img/2ynm2.png" data-aos="zoom-in" data-aos-delay="200" class="block w-full h-48 md:h-64">
+        <img src="img/2ynm2.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Everything Matching">
+      </a>
+      <a href="img/3yumyum.png" data-aos="zoom-in" data-aos-delay="300" class="block w-full h-48 md:h-64">
+        <img src="img/3yumyum.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="YUM YUM !!">
+      </a>
+      <!-- Second Row of Photos -->
+      <a href="img/palia1.png" data-aos="zoom-in" data-aos-delay="400" class="block w-full h-48 md:h-64">
+        <img src="img/palia1.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Us in Palia">
+      </a>
+      <a href="img/palia2.png" data-aos="zoom-in" data-aos-delay="500" class="block w-full h-48 md:h-64">
+        <img src="img/palia2.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="You are my Queen.">
+      </a>
+      <a href="img/cuteskin.png" data-aos="zoom-in" data-aos-delay="600" class="block w-full h-48 md:h-64">
+        <img src="img/cuteskin.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Cute Skin as YOU.">
+      </a>
+      <a href="img/heels.png" data-aos="zoom-in" data-aos-delay="700" class="block w-full h-48 md:h-64">
+        <img src="img/heels.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Nice Heels...">
+      </a>
+      <!-- Third Row of Photos -->
+      <a href="img/incar.png" data-aos="zoom-in" data-aos-delay="800" class="block w-full h-48 md:h-64">
+        <img src="img/usincar.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Us in Car...">
+      </a>
+      <a href="img/10.png" data-aos="zoom-in" data-aos-delay="900" class="block w-full h-48 md:h-64">
+        <img src="img/urcute.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="You and Your skin is very cute">
+      </a>
+      <a href="img/11.png" data-aos="zoom-in" data-aos-delay="1000" class="block w-full h-48 md:h-64">
+        <img src="img/beatingheart.png" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="You have nice heart... and its mine">
+      </a>
+      <a href="img/12.png" data-aos="zoom-in" data-aos-delay="1100" class="block w-full h-48 md:h-64">
+        <img src="img/youandme.jpeg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Lucie...This is best picture here...">
+      </a> 
+    </div>
+  </section>
+
+
+
+
+<!-- Section : THE REAL LIFE
+  <section class="my-16 md:my-24">
+    <h2 class="text-4xl md:text-5xl font-anime text-center mb-12 my-text" data-aos="fade-up" >Some Real Life Memories</h2>
+    <h3 class="text-center text-lg -mt-8 mb-12 my-text" >Will be removed soon due to privacy reasons.</h3>
+    <p class="text-center text-lg -mt-8 mb-12 my-text" >Click on picture to expand.</p>
+    <div id="lightgallery" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="img/1fms.png" data-aos="zoom-in" class="block w-full h-48 md:h-64">
+        <img src="img/pic1.jpg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Ferrari skin you told me to buy.">
+      </a>
+      <a href="img/2ynm.png" data-aos="zoom-in" data-aos-delay="100" class="block w-full h-48 md:h-64">
+        <img src="img/pic2.jpg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Matching Skins">
+      </a>
+      <a href="img/2ynm2.png" data-aos="zoom-in" data-aos-delay="200" class="block w-full h-48 md:h-64">
+        <img src="img/pic3.jpg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Everything Matching">
+      </a>
+      <a href="img/3yumyum.png" data-aos="zoom-in" data-aos-delay="300" class="block w-full h-48 md:h-64">
+        <img src="img/pic4.jpg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="YUM YUM !!">
+      </a>
+     Second Row of Photos
+      <a href="img/palia1.png" data-aos="zoom-in" data-aos-delay="400" class="block w-full h-48 md:h-64">
+        <img src="img/pic5.jpg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Us in Palia">
+      </a>
+      <a href="img/palia2.png" data-aos="zoom-in" data-aos-delay="500" class="block w-full h-48 md:h-64">
+        <img src="img/pic6.jpg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="You are my Queen.">
+      </a>
+      <a href="img/cuteskin.png" data-aos="zoom-in" data-aos-delay="600" class="block w-full h-48 md:h-64">
+        <img src="img/pic7.jpg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Cute Skin as YOU.">
+      </a>
+      <a href="img/heels.png" data-aos="zoom-in" data-aos-delay="700" class="block w-full h-48 md:h-64">
+        <img src="img/pic8.jpg" class="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 w-full h-full object-cover border-4 border-white" alt="Nice Heels...">
+      </a>
+  </section>
+ -->
+
+
+
+  
+    <!-- Section 6: Finale -->
+    <section class="my-16 md:my-24" data-aos="fade">
+        <h2 class="text-4xl md:text-5xl font-anime text-center mb-4" style="color: #ffffff;">Happy Birthday, Dear Luci.</h2>
+        <div class="max-w-4xl mx-auto rounded-lg shadow-2xl overflow-hidden bg-navy">
+    </section>
+
+<a href="funny.html" class="top-button">There is something more... CLICK HERE...💌</a>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-navy text-white p-8 text-center">
+  <p>Enjoy your day to the fullest.</p>
+  <p class="text-sm opacity-70 mt-2">I Hope you really liked it...</p>
+</footer>
+
+<!-- These scripts are for the animations and photo gallery -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
+
+<!-- Link to your new external JavaScript file -->
+<script src="script.js"></script>
+
+
+
+
+
+  
+</script>
+
+</div>
+</body>
+</html>
